@@ -74,7 +74,26 @@
           $toAddTimestamp.text(lastTweet.created_at);
           $toAddTimestamp.prependTo($tweetList);
           $toAdd.prependTo($tweetList);
-        })
+        });
+
+        
+        // Function which removes all highlight
+        function removeHighlight() {
+          $(".highlight").removeClass("highlight");
+        }
+
+        // Only shows user tweets when user is clicked.
+        $(".followedUsers").on("click", "li", function() {
+
+          if ($(this).attr('class').search("highlight") != -1) {
+            removeHighlight();
+          }
+          else {
+            removeHighlight();
+            var classString = "." + $(this).attr('class');
+            $(classString).addClass("highlight");
+          }
+        });
 
       });
 
