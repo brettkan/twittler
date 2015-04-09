@@ -81,8 +81,51 @@ Navbar
 
 */
 
+.navbar {
+	background-color: orange;
+
+}
+
 .navbar li {
 	display: inline-block;
+	width: 10em;
+	margin: 1em 1em;
+}
+
+/*
+
+=======================================================
+
+Feed
+
+=======================================================
+
+*/
+
+.feed {
+	float: left;
+	width: 66%;
+	background-color: yellow;
+	padding: 1em;
+	height: 500px;
+	overflow: auto;
+}
+
+/*
+
+=======================================================
+
+Aside
+
+=======================================================
+
+*/
+
+.sidebar {
+	float: right;
+	width: 33%;
+	background-color: green;
+
 }
 
 /*
