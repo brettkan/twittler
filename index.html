@@ -51,20 +51,17 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div class="tweet"></div>');
+          var $tweet = $('<div class="tweet highlight"></div>');
           $tweet.addClass(tweet.user);
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
           $tweet.appendTo($tweetList);
 
-          var $timestamp = $('<div class="timestamp"></div>')
+          var $timestamp = $('<div class="timestamp highlight"></div>')
           $timestamp.addClass(tweet.user);
           $timestamp.text(tweet.created_at);
           $timestamp.appendTo($tweetList);
           index -= 1;
         }
-
-        // Schedules new tweets
-        scheduleNextTweet();
 
         // Adds new tweets to feed on update
         Object.observe(streams.home, function() {
@@ -90,7 +87,8 @@
 
           // If user is already selected, toggles highlight off
           if ($(this).attr('class').search("highlight") != -1) {
-            removeHighlight();
+            $(this).removeClass("highlight");
+            $(".feed").find("div").addClass("highlight");
           }
           // Else toggles highlight to different user and tweets
           else {

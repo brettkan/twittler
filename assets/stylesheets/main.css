@@ -93,6 +93,14 @@ h3 {
 	padding-bottom: 8px;
 }
 
+.feed div {
+	display: none;
+}
+
+.feed .highlight {
+  display: block;
+}
+
 /*
 
 =======================================================
