@@ -64,10 +64,12 @@
         // Adds users to followedUsers
         var sortedUsers = users.slice(0).sort();
         for(var i = 0; i < sortedUsers.length; i++){
+          var $newLink = $('<a href="#"></a>');
           var $newUser = $('<li class="allSelected"></li>');
-          $newUser.addClass(sortedUsers[i])
+          $newUser.addClass(sortedUsers[i]);
           $newUser.text(sortedUsers[i]);
-          $newUser.appendTo($(".followedUsers"))
+          $newUser.appendTo($newLink);
+          $newLink.appendTo($(".followedUsers"));
         }
 
         // Creates a new tweet box to be added to feed
