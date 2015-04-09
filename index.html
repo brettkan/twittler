@@ -82,16 +82,26 @@
           $toAddTimestamp.appendTo($tweetBox);
 
           $tweetBox.addClass(lastTweet.user);
+
+          // Auto highlight if all users or specific user selected
+          if ($(".followedUsers").find($("." + lastTweet.user)).hasClass("allSelected")) {
+            $tweetBox.addClass("highlight");
+          }
+          if ($(".followedUsers").find($("." + lastTweet.user)).hasClass("soloSelected")) {
+            $tweetBox.addClass("highlight");
+          }
+
           $tweetBox.prependTo($tweetList);
         });
 
         
-        // Function which removes all highlight
+        // Function which removes highlight class from all tweets
         function removeHighlight() {
           $(".highlight").removeClass("highlight");
         }
 
         // Only shows user tweets when user is clicked.
+        // Toggles from single user to all tweets when clicked again.
         $(".followedUsers").on("click", "li", function() {
           var classString = "." + $(this).attr('class');
 
