@@ -6,7 +6,6 @@
   </head>
   <body>
     <section class="feed">
-      <button>Refresh Tweets</button>
       <ul id="tweetList">>
       </ul>
     </section>
@@ -20,17 +19,28 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<li></li>');
+          var $tweet = $('<div></div>');
+          var $timestamp = $('<div></div>')
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $timestamp.text(tweet.created_at);
           $tweet.appendTo($tweetList);
+          $timestamp.appendTo($tweetList);
           index -= 1;
         }
 
-        // Refreshes feed to show new tweets on button press
+        // Schedules new tweets
         scheduleNextTweet();
-        $(".feed").on("click", "button", function() {
-          $(this).closest(".feed").find($tweetList).prepend(streams.home[11].message)
-        });
+
+        // Adds new tweets to feed on update
+        Object.observe(streams.home, function() {
+          var lastTweet = streams.home[streams.home.length - 1];
+          var $toAdd = $('<div></div>');
+          var $toAddTimestamp = $('<div></div>');
+          $toAdd.text('@' + lastTweet.user + ': ' + lastTweet.message);
+          $toAddTimestamp.text(lastTweet.created_at);
+          $toAddTimestamp.prependTo($tweetList);
+          $toAdd.prependTo($tweetList);
+        })
 
       });
 
