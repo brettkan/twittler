@@ -42,7 +42,7 @@
         var sortedUsers = users.slice(0).sort();
         for(var i = 0; i < sortedUsers.length; i++){
 
-          var $newUser = $('<li></li>');
+          var $newUser = $('<li class="allSelected"></li>');
           $newUser.addClass(sortedUsers[i])
           $newUser.text(sortedUsers[i]);
           $newUser.appendTo($(".followedUsers"))
@@ -93,17 +93,28 @@
 
         // Only shows user tweets when user is clicked.
         $(".followedUsers").on("click", "li", function() {
+          var classString = "." + $(this).attr('class');
 
-          // If user is already selected, toggles highlight off
-          if ($(this).attr('class').search("highlight") != -1) {
-            $(this).removeClass("highlight");
-            $(".feed").find("div").addClass("highlight");
-          }
-          // Else toggles highlight to different user and tweets
-          else {
+          // If all feeds are showing, select certain user feed.
+          if (classString.search("allSelected") != -1) {
+            $(this).closest($(".followedUsers")).find($("li")).removeClass("allSelected");
+            classString = "." + $(this).attr('class');
             removeHighlight();
-            var classString = "." + $(this).attr('class');
-            $(classString).addClass("highlight");
+            $(".feed").find(classString).addClass("highlight");
+            $(this).addClass("soloSelected");
+          }
+          // If one user is showing and click on same user, toggle all
+          else if (classString.search("soloSelected") != -1) {
+            $(this).removeClass("soloSelected");
+            $(this).closest($(".followedUsers")).find($("li")).addClass("allSelected");
+            $(".feed").find($("div")).addClass("highlight");       
+          }
+          // If one user is showing and click on different user, select certain user feed
+          else {
+            $(this).closest($(".followedUsers")).find($("li")).removeClass("soloSelected");
+            $(this).addClass("soloSelected");
+            removeHighlight();
+            $(".feed").find(classString).addClass("highlight");
           }
         });
 
