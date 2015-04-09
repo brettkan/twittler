@@ -25,21 +25,37 @@
       <ul id="tweetList">>
       </ul>
     </section>
+
+    <!--- Script -->
+
     <script>
 
       $(document).ready(function(){
         var $tweetList = $('#tweetList');
         $tweetList.html('');
 
-        // Adds initial tweets to feed
+        // Adds users to followedUsers
+        var sortedUsers = users.slice(0).sort();
+        for(var i = 0; i < sortedUsers.length; i++){
+
+          var $newUser = $('<li></li>');
+          $newUser.addClass(sortedUsers[i])
+          $newUser.text(sortedUsers[i]);
+          $newUser.appendTo($(".followedUsers"))
+        }
+
+        // Adds initial tweets and timestamps to feed
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
           var $tweet = $('<div class="tweet"></div>');
-          var $timestamp = $('<div class="timestamp"></div>')
+          $tweet.addClass(tweet.user);
           $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $timestamp.text(tweet.created_at);
           $tweet.appendTo($tweetList);
+
+          var $timestamp = $('<div class="timestamp"></div>')
+          $timestamp.addClass(tweet.user);
+          $timestamp.text(tweet.created_at);
           $timestamp.appendTo($tweetList);
           index -= 1;
         }
@@ -52,6 +68,8 @@
           var lastTweet = streams.home[streams.home.length - 1];
           var $toAdd = $('<div class="tweet"></div>');
           var $toAddTimestamp = $('<div class="timestamp"></div>');
+          $toAdd.addClass(lastTweet.user);
+          $toAddTimestamp.addClass(lastTweet.user);
           $toAdd.text('@' + lastTweet.user + ': ' + lastTweet.message);
           $toAddTimestamp.text(lastTweet.created_at);
           $toAddTimestamp.prependTo($tweetList);
@@ -66,7 +84,7 @@
 
     <aside>
       <h3>Users you follow</h3>
-      <ul>
+      <ul class="followedUsers">
       </ul>
     </aside>
 
