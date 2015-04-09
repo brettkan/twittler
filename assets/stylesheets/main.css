@@ -209,12 +209,13 @@ Aside
 }
 
 .followedUsers li {
-	padding: 8px 23px;
+	padding: 14px 23px;
 	border-left: 1.5px solid #B5B5B5;
 	border-right: 1.5px solid #B5B5B5;
 	border-bottom: 1.5px solid #B5B5B5;
 }
 
 .followedUsers .soloSelected {
-	border-left: 3px solid #325668;
+	background-color: #516169;
+	color: white;
 }
