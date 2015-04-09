@@ -85,7 +85,7 @@ h3 {
 	font-size: 24px;
 	font-weight: bold;
 	padding: 8px 15px;
-	border-bottom: 1.5px solid #B5B5B5;
+	border: 1.5px solid #B5B5B5;
 }
 
 /*
@@ -137,20 +137,23 @@ Feed
 
 .feed {
 	float: left;
-	width: 65%;
+	width: 64%;
 	height: 500px;
-	border: 1.5px solid #B5B5B5;
 }
 
 #tweetList {
 	height: 458px;
 	display: block;
 	overflow: auto;
+	border-bottom: 1.5px solid #B5B5B5;
 }
 
 #tweetList div {
 	padding: 8px 23px;
-	border-top: 1.5px solid #B5B5B5;
+	border-bottom: 1.5px solid #B5B5B5;
+	border-left: 1.5px solid #B5B5B5;
+	border-right: 1.5px solid #B5B5B5;
+	display: none;
 }
 
 .timestamp {
@@ -158,12 +161,8 @@ Feed
 	padding-left: 24px;
 }
 
-.feed div {
-	display: none;
-}
-
-.feed .highlight {
-  display: block;
+#tweetList .highlight {
+    display: block;
 }
 
 /*
@@ -179,5 +178,15 @@ Aside
 .sidebar {
 	float: right;
 	width: 34%;
-	border: 1.5px solid #B5B5B5;
+}
+
+.followedUsers li {
+	padding: 8px 23px;
+	border-left: 1.5px solid #B5B5B5;
+	border-right: 1.5px solid #B5B5B5;
+	border-bottom: 1.5px solid #B5B5B5;
+}
+
+.followedUsers .soloSelected {
+	border-left: 3px solid red;
 }
