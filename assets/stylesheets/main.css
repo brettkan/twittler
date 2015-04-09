@@ -87,6 +87,10 @@ h3 {
 	font-weight: bold;
 }
 
+#tweetList div {
+	padding: 8px;
+}
+
 .timestamp {
 	font-size: 12px;
 	padding-left: 24px;
@@ -126,19 +130,45 @@ Navbar
 
 =======================================================
 
+feedSidebarBox
+
+=======================================================
+
+*/
+
+.feedSidebarBox {
+	width: 800px;
+	background-color: white;
+	margin: 30px auto;
+}
+
+/*
+
+=======================================================
+
 Feed
 
 =======================================================
 
 */
 
+.feedSidebarBox h3,
 .feed {
 	float: left;
-	width: 66%;
-	background-color: yellow;
+	width: 65%;
+}
+
+.feedSidebarBox h3 {
+	border-top: 1.5px solid #B5B5B5;
+}
+
+.feed {
 	padding: 1em;
 	height: 500px;
 	overflow: auto;
+	border-left: 1.5px solid #B5B5B5;
+	border-right: 1.5px solid #B5B5B5;
+	border-bottom: 1.5px solid #B5B5B5;
 }
 
 /*
@@ -154,9 +184,8 @@ Aside
 .sidebar {
 	float: right;
 	width: 34%;
-	background-color: green;
 	padding: 1em;
-
+	border: 1.5px solid #B5B5B5;
 }
 
 /*
