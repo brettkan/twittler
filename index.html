@@ -14,6 +14,7 @@
 
     <header>
       <ul class="navbar">
+        <li>Twittler</li>
         <li>Home</li>
         <li>Notifications</li>
         <li>Messages</li>
@@ -51,29 +52,37 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $('<div class="tweet highlight"></div>');
-          $tweet.addClass(tweet.user);
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($tweetList);
+          var $tweetBox = $('<div class="highlight"></div>')
 
-          var $timestamp = $('<div class="timestamp highlight"></div>')
-          $timestamp.addClass(tweet.user);
+          var $tweet = $('<p class="tweet"></p>');
+          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.appendTo($tweetBox);
+
+          var $timestamp = $('<p class="timestamp"></p>')
           $timestamp.text(tweet.created_at);
-          $timestamp.appendTo($tweetList);
+          $timestamp.appendTo($tweetBox);
+
+          $tweetBox.addClass(tweet.user);
+          $tweetBox.appendTo($tweetList);
+
           index -= 1;
         }
 
         // Adds new tweets to feed on update
         Object.observe(streams.home, function() {
           var lastTweet = streams.home[streams.home.length - 1];
-          var $toAdd = $('<div class="tweet"></div>');
-          var $toAddTimestamp = $('<div class="timestamp"></div>');
-          $toAdd.addClass(lastTweet.user);
-          $toAddTimestamp.addClass(lastTweet.user);
+          var $tweetBox = $('<div></div>')
+
+          var $toAdd = $('<p class="tweet"></p>');
           $toAdd.text('@' + lastTweet.user + ': ' + lastTweet.message);
+          $toAdd.appendTo($tweetBox);
+
+          var $toAddTimestamp = $('<p class="timestamp"></p>');
           $toAddTimestamp.text(lastTweet.created_at);
-          $toAddTimestamp.prependTo($tweetList);
-          $toAdd.prependTo($tweetList);
+          $toAddTimestamp.appendTo($tweetBox);
+
+          $tweetBox.addClass(lastTweet.user);
+          $tweetBox.prependTo($tweetList);
         });
 
         
