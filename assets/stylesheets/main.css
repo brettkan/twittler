@@ -167,8 +167,23 @@ Feed
 	display: none;
 }
 
+.boldUser {
+	font-weight: bold;
+}
+
+.callSign{
+	color: #828282;
+	font-size: 13px;
+}
+
+.tweet,
+.username,
 .timestamp {
-	font-size: 12px;
+	line-height: 125%;
+}
+
+.timestamp {
+	font-size: 11px;
 	padding-left: 24px;
 	color: #828282;
 }
